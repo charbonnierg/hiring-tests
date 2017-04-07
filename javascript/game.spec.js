@@ -1,5 +1,7 @@
+"use strict"
+
 const Game = require('./game.js').Game;
-const assert = require('assert')
+const assert = require('chai').assert;
 const _ = require('lodash')
 
 describe("AskQuestion", function() {
@@ -8,35 +10,21 @@ describe("AskQuestion", function() {
         1 : "Science",
         2 : "Sports",
         3 : "Rock",
-        4 : "Culture",
-        5 : "History",
-        6 : "Pop",
-        7 : "Science",
-        8 : "Sports",
-        9 : "Rock",
-        10: "Culture",
-        11: "History",
-        12: "Pop",
-        13: "Science",
-        14: "Sports",
-        15: "Rock",
-        16: "Culture",
-        17: "History",
+        4 : "Pop",
+        5 : "Science",
+        6 : "Sports",
+        7 : "Rock",
+        8 : "Pop",
+        9 : "Science",
+        10: "Sports",
+        11: "Rock",
     };
     _.forEach(expectedPlaceCategoryMapping, function (category, place) {
        it("provides the correct category", () => {
-           assert.equal(Game.askQuestion(), category)
+
+           let game = new Game();
+           game.places[0] = place;
+           assert.include(game._askQuestion(), category);
        })
     })
-  it("provides the correct category", function() {
-    expect(true).toBe(true);
-  });
-
-  it("should access game", function() {
-    expect(Game).toBeDefined();
-  });
-});
-
-describe("Your specs...", function() {
-  // it ...
 });

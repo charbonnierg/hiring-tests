@@ -40,6 +40,7 @@ exports.Game = function() {
         return 'Rock';
     };
 
+    this.places = places;
     this.createRockQuestion = function(index){
         return "Rock Question "+index;
     };
@@ -71,16 +72,19 @@ exports.Game = function() {
         return players.length;
     };
 
-
-    var askQuestion = function(){
+    this._askQuestion = function () {
         if(currentCategory() == 'Pop')
-            console.log(popQuestions.shift());
+            return popQuestions.shift();
         if(currentCategory() == 'Science')
-            console.log(scienceQuestions.shift());
+            return scienceQuestions.shift();
         if(currentCategory() == 'Sports')
-            console.log(sportsQuestions.shift());
+            return sportsQuestions.shift();
         if(currentCategory() == 'Rock')
-            console.log(rockQuestions.shift());
+            return rockQuestions.shift();
+    }
+
+    this.askQuestion = function(){
+        console.log(this._askQuestion());
     };
 
     this.roll = function(roll){
@@ -99,7 +103,7 @@ exports.Game = function() {
 
                 console.log(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
                 console.log("The category is " + currentCategory());
-                askQuestion();
+                this.askQuestion();
             }else{
                 console.log(players[currentPlayer] + " is not getting out of the penalty box");
                 isGettingOutOfPenaltyBox = false;
@@ -113,7 +117,7 @@ exports.Game = function() {
 
             console.log(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
             console.log("The category is " + currentCategory());
-            askQuestion();
+            this.askQuestion();
         }
     };
 
