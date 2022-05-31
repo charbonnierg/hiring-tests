@@ -19,14 +19,12 @@ class TestsGameAskQuestion(TestCase):
         11: "Rock",
     }
 
-    def test_ask_question__provide_the_correct_category__pop(self):
-        game = Game()
-        place = 'Pop'
-        game.places[0] = place
-        self.assertTrue(game._ask_question().endswith('0'))
+    def test_ask_question(self):
+        def provide_the_correct_category(place, category):
+            game = Game()
+            game.places[0] = place
+            self.assertTrue(game._ask_question().startswith(category))
 
-    def test_ask_question__provide_the_correct_category__science(self):
-        game = Game()
-        place = 'Science'
-        game.places[0] = place
-        self.assertTrue(game._ask_question().endswith('1'))
+        for place, category in self.expected_place_category_mapping.items():
+            provide_the_correct_category(place, category)
+
