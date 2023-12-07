@@ -8,6 +8,8 @@ class Game:
     science_questions = []
     sports_questions = []
     rock_questions = []
+    culture_questions = []
+    history_questions = []
 
     current_player = 0
     is_getting_out_of_penalty_box = False
@@ -21,6 +23,8 @@ class Game:
             self.science_questions.append("Science Question " + str(i))
             self.sports_questions.append("Sports Question " + str(i))
             self.rock_questions.append(self.create_rock_question(i))
+            self.culture_questions.append("Culture Question " + str(i))
+            self.history_questions.append("History Question " + str(i))
 
     def did_the_player_win(self):
         return not (self.purses[self.current_player] == 6)
@@ -28,22 +32,34 @@ class Game:
     def current_category(self):
         if self.places[self.current_player] == 0:
             return 'Pop'
-        if self.places[self.current_player] == 4:
+        if self.places[self.current_player] == 6:
             return 'Pop'
-        if self.places[self.current_player] == 8:
+        if self.places[self.current_player] == 12:
             return 'Pop'
         if self.places[self.current_player] == 1:
             return 'Science'
-        if self.places[self.current_player] == 5:
+        if self.places[self.current_player] == 7:
             return 'Science'
-        if self.places[self.current_player] == 9:
+        if self.places[self.current_player] == 13:
             return 'Science'
         if self.places[self.current_player] == 2:
             return 'Sports'
-        if self.places[self.current_player] == 6:
+        if self.places[self.current_player] == 8:
             return 'Sports'
+        if self.places[self.current_player] == 14:
+            return 'Sports'
+        if self.places[self.current_player] == 4:
+            return 'Culture'
         if self.places[self.current_player] == 10:
-            return 'Sports'
+            return 'Culture'
+        if self.places[self.current_player] == 16:
+            return 'Culture'
+        if self.places[self.current_player] == 5:
+            return 'History'
+        if self.places[self.current_player] == 11:
+            return 'History'
+        if self.places[self.current_player] == 17:
+            return 'History'
         return 'Rock'
 
     places = places
@@ -74,6 +90,10 @@ class Game:
             return self.sports_questions.pop(0)
         if self.current_category() == 'Rock':
             return self.rock_questions.pop(0)
+        if self.current_category() == 'Culture':
+            return self.culture_questions.pop(0)
+        if self.current_category() == 'History':
+            return self.history_questions.pop(0)
 
     def ask_question(self):
         print(self._ask_question())
@@ -88,8 +108,8 @@ class Game:
 
                 print(self.players[self.currentPlayer] + " is getting out of the penalty box")
                 self.places[self.current_player] = self.places[self.current_player] + roll
-                if self.places[self.current_player] > 11:
-                    self.places[self.current_player] = self.places[self.current_player] - 12
+                if self.places[self.current_player] > 17:
+                    self.places[self.current_player] = self.places[self.current_player] - 18
 
                 print(self.players[self.current_player] + "'s new location is " + str(self.places[self.current_player]))
                 print("The category is " + self.current_category())
@@ -99,8 +119,8 @@ class Game:
                 self.is_getting_out_of_penalty_box = False
         else:
             self.places[self.current_player] = self.places[self.current_player] + roll
-            if self.places[self.current_player] > 11:
-                self.places[self.current_player] = self.places[self.current_player] - 12
+            if self.places[self.current_player] > 17:
+                self.places[self.current_player] = self.places[self.current_player] - 18
 
             print(self.players[self.current_player] + "'s new location is " + str(self.places[self.current_player]))
             print("The category is " + self.current_category())

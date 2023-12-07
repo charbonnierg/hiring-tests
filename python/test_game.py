@@ -5,18 +5,24 @@ from game import Game
 
 class TestsGameAskQuestion(TestCase):
     expected_place_category_mapping = {
-        0: "Pop",
         1: "Science",
         2: "Sports",
         3: "Rock",
-        4: "Pop",
-        5: "Science",
-        6: "Sports",
-        7: "Rock",
-        8: "Pop",
-        9: "Science",
-        10: "Sports",
-        11: "Rock",
+        4: "Culture",
+        5: "History",
+        6: "Pop",
+        7: "Science",
+        8: "Sports",
+        9: "Rock",
+        10: "Culture",
+        11: "History",
+        12: "Pop",
+        13: "Science",
+        14: "Sports",
+        15: "Rock",
+        16: "Culture",
+        17: "History",
+
     }
 
     def test_ask_question(self):
